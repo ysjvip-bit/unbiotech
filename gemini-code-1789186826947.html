@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>유앤바이오텍 | UN Biotech</title>
+  <!-- Noto Sans KR 폰트 불러오기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #333333;
+      background-color: #fcfdfe;
+      line-height: 1.6;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+
+    /* Color Palette */
+    :root {
+      --primary: #1F524C;      /* 차분한 바이오 딥 틸/그린 */
+      --primary-light: #EBF4F3;
+      --text-dark: #222222;
+      --text-muted: #666666;
+      --bg-gray: #f8faf9;
+      --border-color: #e2e8e5;
+    }
+
+    /* Layout Container */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--primary);
+    }
+    .logo span {
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-left: 6px;
+      font-size: 14px;
+    }
+    nav ul {
+      display: flex;
+      gap: 28px;
+    }
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      background: linear-gradient(180deg, #f2f7f6 0%, #fcfdfe 100%);
+    }
+    .hero-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.35;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 4px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover {
+      background-color: #173e3a;
+    }
+
+    /* Section Common */
+    section {
+      padding: 80px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Overview Section */
+    .overview {
+      background-color: var(--bg-gray);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .overview-card {
+      background: #fff;
+      padding: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    .overview-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .overview-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Core Values Section */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .value-item {
+      padding: 24px;
+      border-left: 3px solid var(--primary);
+      background-color: #fff;
+      border-top: 1px solid #f0f0f0;
+      border-right: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .value-item h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .value-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Services Section */
+    .services {
+      background-color: var(--bg-gray);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    .service-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .service-card ul {
+      margin-top: 12px;
+    }
+    .service-card li {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 12px;
+    }
+    .service-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    /* Process Section */
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .step-item {
+      flex: 1;
+      background: #fff;
+      padding: 20px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+    .step-num {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: #fff;
+    }
+    .contact-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--primary-light);
+      padding: 40px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .contact-box h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .contact-info {
+      margin: 20px 0;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 0;
+      background-color: #222;
+      color: #888;
+      font-size: 12px;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 24px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .process-steps { flex-direction: column; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <div class="logo">UN BIOTECH <span>유앤바이오텍</span></div>
+      <nav>
+        <ul>
+          <li><a href="#overview">회사개요</a></li>
+          <li><a href="#vision">핵심가치</a></li>
+          <li><a href="#services">주요서비스</a></li>
+          <li><a href="#contact">문의하기</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-subtitle">GMP Technical Services Partner</div>
+      <h1 class="hero-title">제약·바이오 산업의 품질과<br>혁신을 이끄는 GMP 기술 파트너</h1>
+      <p class="hero-desc">
+        유앤바이오텍은 제조 현장의 안정적인 운영과 규제 대응 역량을 강화하여,<br>
+        고객의 성공과 고품질 바이오 제조 환경 구축을 함께 만들어갑니다.
+      </p>
+      <a href="#contact" class="btn-primary">상담 문의하기</a>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section id="overview" class="overview">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">회사 개요</h2>
+        <p class="section-subtitle">고객과 함께 성장하는 기술 중심 B2B 서비스</p>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <h3>설립 목적</h3>
+          <p>제약·바이오 제조소의 원가 절감, 품질 향상 및 안정적인 GMP 시스템 구축 지원</p>
+        </div>
+        <div class="overview-card">
+          <h3>사업 분야</h3>
+          <p>GMP 기술서비스, 적격성평가 및 밸리데이션, 설비 및 소모품 유통</p>
+        </div>
+        <div class="overview-card">
+          <h3>주요 특화 영역</h3>
+          <p>B2B 제조사 직접 지원, 전문 컨설팅 기반의 맞춤형 현장 밀착 서비스</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values Section -->
+  <section id="vision">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">핵심 가치</h2>
+        <p class="section-subtitle">고객의 제조 현장을 더 안전하고 효율적으로 만드는 미션</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-item">
+          <h4>신뢰 (Trust)</h4>
+          <p>국제 규격 기반의 전문적이고 검증된 품질 서비스를 제공합니다.</p>
+        </div>
+        <div class="value-item">
+          <h4>혁신 (Innovation)</h4>
+          <p>최신 GMP 트렌드와 기술 최적화를 반영한 최적 솔루션을 제안합니다.</p>
+        </div>
+        <div class="value-item">
+          <h4>파트너십 (Partnership)</h4>
+          <p>단순 서비스를 넘어 지속적인 사후 관리로 장기적 성장을 도모합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">주요 서비스</h2>
+        <p class="section-subtitle">GMP 관련 전문화된 통합 기술 솔루션을 제공합니다</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <h3>GMP 기술지원</h3>
+          <p style="font-size: 13px; color: #666;">제조소 현장 밀착형 GMP 시스템 설계 및 규제 대응</p>
+          <ul>
+            <li>GMP 시스템 설계 및 구축</li>
+            <li>제조 공정 기술 지원</li>
+            <li>규제 대응 문서화 및 실사 지원</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>적격성평가 & 밸리데이션</h3>
+          <p style="font-size: 13px; color: #666;">신뢰할 수 있는 설비 및 공정 검증 서비스</p>
+          <ul>
+            <li>IQ / OQ / PQ 적격성평가</li>
+            <li>공정 및 세척 밸리데이션</li>
+            <li>CSV & KOLAS 교정 서비스</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>GMP 교육 & 컨설팅</h3>
+          <p style="font-size: 13px; color: #666;">임직원 역량 강화 및 품질 최적화</p>
+          <ul>
+            <li>GMP 기초·심화 및 맞춤 교육</li>
+            <li>Gap 분석 및 개선 전략 수립</li>
+            <li>원가절감 방안 도출 지원</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>설비·소모품 공급 유통</h3>
+          <p style="font-size: 13px; color: #666;">제조 현장에 최적화된 자재 공급</p>
+          <ul>
+            <li>제조 설비 안정적 공급</li>
+            <li>필수 소모품 유통 지원</li>
+            <li>효율적 유통 프로세스 구축</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Process Sub-section -->
+      <div style="margin-top: 60px;">
+        <h3 style="font-size: 18px; text-align: center; margin-bottom: 24px; color: var(--text-dark);">기술지원 프로세스</h3>
+        <div class="process-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <div class="step-title">현장 진단</div>
+            <div class="step-desc">현황 파악 및 Gap 분석</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <div class="step-title">계획 수립</div>
+            <div class="step-desc">맞춤형 실행 계획 설계</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <div class="step-title">시스템 구축</div>
+            <div class="step-desc">GMP 시스템 도입 및 구현</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">4</span>
+            <div class="step-title">검증 및 교육</div>
+            <div class="step-desc">적격성평가 및 직원 교육</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">5</span>
+            <div class="step-title">지속 관리</div>
+            <div class="step-desc">사후 관리 및 개선 지원</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-box">
+        <h3>유앤바이오텍과 상담하세요</h3>
+        <p style="font-size: 14px; color: #555;">제약·바이오 제조의 복잡한 GMP 요건, 전문가가 함께 해결합니다.</p>
+        <div class="contact-info">
+          <p><strong>이메일:</strong> ysjvip@gmail.com</p>
+          <p><strong>주소:</strong> 경기도 화성시 동탄중심상가1길 33</p>
+          <p><strong>주요 서비스:</strong> GMP 컨설팅 / 밸리데이션 / 교정 서비스 / 설비·소모품 유통</p>
+        </div>
+        <a href="mailto:ysjvip@gmail.com" class="btn-primary">이메일 문의 보내기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; UN Biotech Co., Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
